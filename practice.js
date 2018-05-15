@@ -1,4 +1,4 @@
-/* 
+/*
   Once you complete a problem, refresh ./SpecRunner.html in your browser and check to see if the problem's test(s) are passing.
   Passed tests will be indicated by a green circle.
   Failed tests will be indicated by a red X.
@@ -27,7 +27,12 @@
   Then invoke the callback function, passing in the first element in the array as it's argument.
 */
 
-// Code Here 
+// Code Here
+function first(array, callback){
+  callback(array[0]);
+};
+
+
 
 // Do not edit the code below.
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -43,11 +48,14 @@ first(names, function(firstName){
 ////////// PROBLEM 2 //////////
 
 /*
-  Write a function called last that takes in an array and a callback function. 
+  Write a function called last that takes in an array and a callback function.
   Then invoke the callback, passing in the last element in the array as the argument.
 */
 
 //Code Here
+function last(array, callback){
+  callback(array[array.length-1]);
+};
 
 // Do not edit the code below.
 last(names, function(lastName){
@@ -61,11 +69,14 @@ last(names, function(lastName){
 ////////// PROBLEM 3 //////////
 
 /*
-  Write a function called multiply that takes in three parameters: two numbers and a callback function.  
-  Invoke the callback, passing in the product of the two numbers multiplied as the argument. 
+  Write a function called multiply that takes in three parameters: two numbers and a callback function.
+  Invoke the callback, passing in the product of the two numbers multiplied as the argument.
 */
 
 //Code Here
+function multiply(num1, num2, callback){
+  callback(num1*num2);
+}
 
 // Do not edit the code below.
 multiply(4, 3, function(answer){
@@ -78,13 +89,22 @@ multiply(4, 3, function(answer){
 ////////// PROBLEM 4 //////////
 
 /*
-  Write a function called contains that takes in three parameters: an array, a name and a callback.  
-  Check if the name exists in the array. 
-  If it does, invoke the callback with true as the argument. 
+  Write a function called contains that takes in three parameters: an array, a name and a callback.
+  Check if the name exists in the array.
+  If it does, invoke the callback with true as the argument.
   If the name does not exist, invoke the callback with false as the argument.
 */
 
-//Code Here 
+//Code Here
+function contains(array, name, callback){
+  for(var i=0; i < array.length; i++){
+    if(array[i]===name){
+      return callback(true);
+    }
+  }return callback(false);
+};
+
+
 
 // Do not edit the code below.
 contains(names, 'Colt', function(result){
@@ -106,6 +126,27 @@ contains(names, 'Colt', function(result){
 */
 
 //Code Here
+// function uniq(array, callback){
+//   var arr = [];
+//   for(var i = 0; i < array.length; i++){
+//     for(var j = i; j < array.length; j++){
+//       if(i !== j && array[i] == array[j]){
+//         arr.push(array[i]);
+//       }
+//     }
+//   }arr.push(array[i]);
+//   return callback(arr);
+// }
+
+function uniq(array, callback){
+  var arr =[];
+  arr = array.filter(function(item, pos){
+    return array.indexOf(item) ==pos;
+  })
+  return callback(arr);
+}
+
+
 
 // Do not edit the code below.
 uniq(names, function(uniqArr){
@@ -117,12 +158,17 @@ uniq(names, function(uniqArr){
 
 ////////// PROBLEM 6 //////////
 
-/* 
-  Write a function called each that takes in an array of names and a callback function. 
+/*
+  Write a function called each that takes in an array of names and a callback function.
   For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 */
 
-//Code Here 
+//Code Here
+function each(array, callback){
+  for(var i = 0; i < array.length; i++){
+    callback(array[i], i)
+  }
+};
 
 // Do not edit the code below.
 each(names, function(item, indice){
@@ -140,6 +186,13 @@ each(names, function(item, indice){
 */
 
 // Code here
+function getUserById(array, id, callback){
+  for(var i = 0; i < array.length; i++){
+    if(array[i].id === id){
+      return callback(array[i])
+    }
+  }
+};
 
 // Do not edit the code below.
 var users = [
@@ -164,6 +217,6 @@ var users = [
 ];
 
 getUserById(users, '16t', function(user){
-  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address); 
+  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address);
 });
 // Do not edit the code above.
